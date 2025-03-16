@@ -1,14 +1,17 @@
 # Use an official Python runtime as a parent image
 FROM python:latest
 
-# Set the working directory in the container
+# Install dependencies
+RUN apt-get update && apt-get install -y python3 python3-pip xvfb
+
+# Set working directory
 WORKDIR /app
 
-# Copy the project files into the container
-COPY . /app
+# Copy all files
+COPY . .
 
 # Install dependencies
 RUN pip install --no-cache-dir pygame
 
-# Command to run the chess game (can be overridden)
-CMD ["python", "ChessMain.py"]
+# Run ChessMain.py with virtual display
+CMD xvfb-run --auto-servernum python ChessMain.py
