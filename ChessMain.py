@@ -335,7 +335,7 @@ def animateMove(move, screen, board, clock, whitesPerspective):
         p.draw.rect(screen, color, endSqaure)
         # draw captured piece back
         if move.pieceCaptured != '--':
-            if move.enPassant:
+            if move.isEnPassantMove:
                 endSqaure = p.Rect(drawEndCol * SQ_SIZE, drawStartRow * SQ_SIZE, SQ_SIZE, SQ_SIZE)
             screen.blit(IMAGES[move.pieceCaptured], endSqaure)
         # draw moving piece
